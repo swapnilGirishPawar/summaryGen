@@ -1,0 +1,41 @@
+name: Google sheet runner
+
+on:
+  schedule:
+    - cron: '30 5 * * *' # this cron is to run the job daily 11.30 AM IST.
+  push:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  run-android-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pull the project in to the runner
+        uses: actions/checkout@v2
+
+      - name: setup the java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
+      - name: Restore Maven cache
+        uses: skjolber/maven-cache-github-action@v1
+        continue-on-error: true
+        with:
+          step: restore
+
+      - name: Trigger Automation on Lamda-Test Platform - Android
+        env:
+          LAMDA_USERNAME: ${{ secrets.LAMDA_USERNAME }}
+          LAMDA_ACCESSKEY: ${{ secrets.LAMDA_ACCESSKEY }}
+        run: |
+          mvn test -P GithubActionsDaily
+
+      - name: Save Maven cache
+        uses: skjolber/maven-cache-github-action@v1
+        continue-on-error: true
+        with:
+          step: save
