@@ -47,9 +47,10 @@ jobs:
           ref: 'v2'
           path: .github/actions/google-sheet-reporter-action
       - name: Upload data to Google Sheets
+
         if: always()
         env:
-          GOOGLE_SPREADSHEET_ID: "1xRMZhYec9JCQzUSN5mO-Yd_4J5exfwSAxhxIAr6RWQI".  # Don't make this a secret; it will break some functionality.
+          GOOGLE_SPREADSHEET_ID: "1xRMZhYec9JCQzUSN5mO-Yd_4J5exfwSAxhxIAr6RWQI"  # Don't make this a secret; it will break some functionality.
         uses: ./.github/actions/google-sheet-reporter-action/
         with:
           base64_service_account_key: ${{ secrets.B64_REPORTING_2_0_SHEETS_SA }}
