@@ -28,11 +28,8 @@ jobs:
           step: restore
 
       - name: Trigger Automation on Lamda-Test Platform - Android
-        env:
-          LAMDA_USERNAME: ${{ secrets.LAMDA_USERNAME }}
-          LAMDA_ACCESSKEY: ${{ secrets.LAMDA_ACCESSKEY }}
         run: |
-          mvn test -P GithubActionsDaily
+          mvn test -P runner
 
       - name: Save Maven cache
         uses: skjolber/maven-cache-github-action@v1
