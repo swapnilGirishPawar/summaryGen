@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommonUtils extends TestExecutionListener {
-    static GoogleSheetUploadWorkflow googleSheetUploadWorkflow = new GoogleSheetUploadWorkflow("INFO: ", "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");
+    static GoogleSheetUploadWorkflow googleSheetUploadWorkflow = new GoogleSheetUploadWorkflow("INFO: ", "");
     public static void generateJson(int passedTestsCount, int failedTestsCount, int skippedTestsCount) throws IOException, InterruptedException {
         ObjectMapper mapper = new ObjectMapper();
 

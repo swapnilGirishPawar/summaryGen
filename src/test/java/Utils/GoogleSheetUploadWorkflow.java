@@ -19,7 +19,7 @@ public class GoogleSheetUploadWorkflow {
 
     public GoogleSheetUploadWorkflow(String logger, String githubToken) {
         this.logger = logger;
-        this.githubToken = "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";
+        this.githubToken = "";
     }
 
     public HttpResponse<String> triggerGoogleSheetUploadWorkflow(Map<String, String> results) throws IOException, InterruptedException {
