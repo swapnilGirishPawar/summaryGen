@@ -36,3 +36,28 @@ jobs:
         continue-on-error: true
         with:
           step: save
+
+      #### UPDATE GOOGLE SHEET WITH REPORTING RESULTS
+      - name: Install Google Sheets Reporter Action
+        if: always()
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.WORKFLOWS_TOKEN }}
+          repository: Adaptavant/google-sheet-reporter-action
+          ref: 'v2'
+          path: .github/actions/google-sheet-reporter-action
+      - name: Upload data to Google Sheets
+        if: always()
+        env:
+          GOOGLE_SPREADSHEET_ID: "1xRMZhYec9JCQzUSN5mO-Yd_4J5exfwSAxhxIAr6RWQI".  # Don't make this a secret; it will break some functionality.
+        uses: ./.github/actions/google-sheet-reporter-action/
+        with:
+          base64_service_account_key: ${{ secrets.B64_REPORTING_2_0_SHEETS_SA }}
+          google_spreadsheet_id: ${{ env.GOOGLE_SPREADSHEET_ID }}
+          summary_file_path: ./reports/summary.json      # change this if allure-report is not in the root of the repo
+          attach_report_url: false                                # set to true to attach the URL to the sheet, false to leave it out
+          # report_name: "Report Name"   # uncomment to add optional report name to Column J.
+          # attach_report_name: true     # uncomment to use the report name from the summary JSON file.
+          # report_url: 'https://example.com'   # uncomment and replace value if needing more control over the report URL inserted in the sheet. This is useful if running the action multiple times in the same job.
+          # environment: 'staging'  # uncomment and replace with the environment the tests ran in
+          # test_plan_name: 'test_plan'   # customize if you have suites reporting in individual rows
