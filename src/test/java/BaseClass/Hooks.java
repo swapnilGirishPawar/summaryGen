@@ -28,5 +28,6 @@ public class  Hooks extends CommonUtils {
     public void afterSuite() throws IOException, InterruptedException {
         System.out.println("After Suite");
         generateJson(passedTestsCount, failedTestsCount, skippedTestsCount);
+
     }
 }
