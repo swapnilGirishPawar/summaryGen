@@ -1,13 +1,15 @@
 package testSuite;
 
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 
-public class testFile1 extends BaseClass.Hooks {
+public class testFileOne extends BaseClass.Hooks {
 
     @Test
     public void test1() {
         System.out.println("Test 1");
+        Assert.fail("intentionally failing the test");
     }
 
     @Test
@@ -18,6 +20,7 @@ public class testFile1 extends BaseClass.Hooks {
     @Test
     public void test3() {
         System.out.println("Test 3");
+        Assert.fail("intentionally failing the test");
     }
 
     @Test

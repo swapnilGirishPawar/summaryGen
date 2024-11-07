@@ -2,7 +2,7 @@ package testSuite;
 
 import org.testng.annotations.Test;
 
-public class testfile2 extends BaseClass.Hooks {
+public class testFileTwo extends BaseClass.Hooks {
     @Test
     public void test5() {
         System.out.println("Test 5");

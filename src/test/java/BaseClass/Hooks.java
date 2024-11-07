@@ -4,6 +4,8 @@ import Utils.CommonUtils;
 import org.testng.TestNG;
 import org.testng.annotations.*;
 
+import java.io.IOException;
+
 public class  Hooks extends CommonUtils {
     @BeforeSuite
     public void beforeSuite() {
@@ -23,7 +25,7 @@ public class  Hooks extends CommonUtils {
     }
 
     @AfterSuite
-    public void afterSuite() {
+    public void afterSuite() throws IOException, InterruptedException {
         System.out.println("After Suite");
         generateJson(passedTestsCount, failedTestsCount, skippedTestsCount);
     }

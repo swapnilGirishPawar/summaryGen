@@ -8,8 +8,8 @@
     <test thread-count="5" name="Test">
         <classes>
             <class name="BaseClass.Hooks"/>
-            <class name="testSuite.testFile1"/>
-            <class name="testSuite.testfile2"/>
+            <class name="testSuite.testFileOne"/>
+            <class name="testSuite.testFileTwo"/>
         </classes>
     </test>
 </suite>

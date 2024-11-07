@@ -42,8 +42,8 @@ public class TestExecutionListener implements ITestListener {
         long executionTime = endTime - startTime;
 
         System.out.println("Total execution time: " + executionTime + " milliseconds");
+
     }
 
-    public static void main(String[] args) {
-    }
+
 }

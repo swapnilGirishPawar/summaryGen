@@ -10,12 +10,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommonUtils extends TestExecutionListener {
-    public static void generateJson(int passedTestsCount, int failedTestsCount, int skippedTestsCount) {
+    static GoogleSheetUploadWorkflow googleSheetUploadWorkflow = new GoogleSheetUploadWorkflow("INFO: ", "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");
+    public static void generateJson(int passedTestsCount, int failedTestsCount, int skippedTestsCount) throws IOException, InterruptedException {
         ObjectMapper mapper = new ObjectMapper();
 
+        Map<String, Object> jsonObject = null;
         try {
             // Create a HashMap to represent the JSON structure
-            Map<String, Object> jsonObject = new HashMap<>();
+            jsonObject = new HashMap<>();
             jsonObject.put("reportName", "TestNG Summary Report");
             jsonObject.put("testRuns", "[]");
 
@@ -49,9 +51,19 @@ public class CommonUtils extends TestExecutionListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        Map<String, String> stringMap = new HashMap<>();
+        for (Map.Entry<String, Object> entry : jsonObject.entrySet()) {
+            stringMap.put(entry.getKey(), entry.getValue().toString());
+        }
+        System.out.println(stringMap);
+
+        googleSheetUploadWorkflow.triggerGoogleSheetUploadWorkflow(stringMap);
+
+
     }
 
-    public static void main(String[] args) {
-        generateJson(passedTestsCount, failedTestsCount, skippedTestsCount);
-    }
+
+
+
 }
